@@ -28,6 +28,10 @@ public class Model {
         }
     }
 
+    public void setRange(int userNumber){
+
+    }
+
     public void setRange(int min, int max){
         this.min = min;
         this.max = max;

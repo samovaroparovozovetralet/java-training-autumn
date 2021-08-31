@@ -13,58 +13,6 @@ public class Controller {
         this.activeState = true;
     }
 
-    private void setCustomRange(Scanner sc){
-        view.printMessage(View.CUSTOM_RANGE_MIN_MESSAGE);
-        while(!sc.hasNextInt()){
-            view.printMessage(View.ERR_MESSAGE);
-            sc.next();
-        }
-        int min = sc.nextInt();
-
-        view.printMessage(View.CUSTOM_RANGE_MAX_MESSAGE);
-        while(!sc.hasNextInt()){
-            view.printMessage(View.ERR_MESSAGE);
-            sc.next();
-        }
-        int max = sc.nextInt();
-
-        model.setRange(min, max);
-        if(!model.checkLogic()){
-            view.printMessage(View.BAD_INPUT_RANGE_MESSAGE);
-            setCustomRange(sc);
-        }
-    }
-
-    private void executeCommand(Scanner sc){
-        String userInput = sc.next();
-        switch (userInput){
-            case "help":{
-                view.printMessage(View.HELP_MESSAGE);
-                break;
-            }
-            case "casual":{
-                model.setRange(Model.DEFAULT_MIN, Model.DEFAULT_MAX);
-                view.printMessage(View.CASUAL_MESSAGE);
-                break;
-            }
-            case "custom":{
-                setCustomRange(sc);
-                view.printMessage(View.CUSTOM_MESSAGE);
-                break;
-            }
-            case "end":{
-                view.printMessage(View.END_GAME_MESSAGE);
-                activeState = false;
-                break;
-            }
-
-            default:{
-                view.printMessage(View.ERR_MESSAGE);
-                view.printMessage(View.HELP_MESSAGE);
-            }
-        }
-    }
-
     public void processUser(){
         Scanner sc = new Scanner(System.in);
         view.displayMenu();
@@ -76,12 +24,16 @@ public class Controller {
                     view.displayRange(model.getMin(), model.getMax());
                 }
                 else{
-                    model.checkEquals(current);
+                    if(model.checkEquals(current)){activeState=false;};
                     view.displayRange(model.getMin(), model.getMax());
                     view.displayStatistic(model.getStatistics());
                 }
             }
-            else { executeCommand(sc); }
+            else {
+                view.printMessage(View.ERR_MESSAGE);
+                view.printMessage(View.HELP_MESSAGE);
+                sc.next();
+            }
         }
     }
 }
