@@ -8,37 +8,31 @@ public class Model {
 
     private int min;
     private int max;
-    private Random myRandom;
+    private final Random myRandom;
     private int randomNumber;
-    private Statistics statistics;
-    private boolean modelLogic;
+    private final Statistics statistics;
+    private boolean modelState;
 
     public Model(){
-        min = DEFAULT_MIN;
-        max = DEFAULT_MAX;
-        modelLogic = true;
+        setRange(DEFAULT_MIN, DEFAULT_MAX);
+        modelState = true;
         myRandom = new Random();
         setNewRandomNumber();
         statistics = new Statistics();
     }
 
     public void setNewRandomNumber(){
-        if(modelLogic){
-            randomNumber = myRandom.nextInt(max-min) + min;
+        if(modelState){
+            randomNumber = myRandom.nextInt(max-min-1) + min + 1;
         }
-    }
-
-    public void setRange(int userNumber){
-
     }
 
     public void setRange(int min, int max){
         this.min = min;
         this.max = max;
         if(min >= max){
-            modelLogic = false;
+            modelState = false;
         }
-        else{ setNewRandomNumber(); }
     }
 
     public void setSeed(int seed){
@@ -46,8 +40,8 @@ public class Model {
         setNewRandomNumber();
     }
 
-    public boolean checkLogic(){
-        return modelLogic;
+    public boolean checkState(){
+        return modelState;
     }
 
     public int getMin(){
@@ -58,25 +52,28 @@ public class Model {
         return max;
     }
 
-
     public Statistics getStatistics(){
         return statistics;
     }
 
     public boolean checkInRange(int inputNumber){
-        if(inputNumber>=min && inputNumber < max){return true;}
+        if(inputNumber>min && inputNumber < max){return true;}
         return false;
     }
 
     public boolean checkEquals(int inputNumber){
-        if(this.randomNumber==inputNumber){
+        if(this.randomNumber>inputNumber){
+            setRange(inputNumber, max);
+        }
+        else if(this.randomNumber<inputNumber){
+            setRange(min, inputNumber);
+        }
+        else if(this.randomNumber==inputNumber){
             statistics.attempt(inputNumber, true);
             setNewRandomNumber();
             return true;
         }
-        else {
-            statistics.attempt(inputNumber, false);
-        }
+        statistics.attempt(inputNumber, false);
         return false;
     }
 }
