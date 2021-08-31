@@ -27,6 +27,10 @@ public class Model {
         }
     }
 
+    public int getRandomNumber(){
+        return randomNumber;
+    }
+
     public void setRange(int min, int max){
         this.min = min;
         this.max = max;
@@ -62,6 +66,8 @@ public class Model {
     }
 
     public boolean checkEquals(int inputNumber){
+        if(!checkInRange(inputNumber)){return false;}
+
         if(this.randomNumber>inputNumber){
             setRange(inputNumber, max);
         }
@@ -70,7 +76,6 @@ public class Model {
         }
         else if(this.randomNumber==inputNumber){
             statistics.attempt(inputNumber, true);
-            setNewRandomNumber();
             return true;
         }
         statistics.attempt(inputNumber, false);

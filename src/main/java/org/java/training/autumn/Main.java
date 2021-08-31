@@ -1,7 +1,7 @@
 package org.java.training.autumn;
 
 /**
- * Hello world!
+ *
  *
  */
 public class Main
