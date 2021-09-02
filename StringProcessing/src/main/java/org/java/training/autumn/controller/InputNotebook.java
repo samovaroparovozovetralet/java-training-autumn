@@ -2,16 +2,17 @@ package org.java.training.autumn.controller;
 
 import org.java.training.autumn.view.View;
 
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 
+import static org.java.training.autumn.controller.MapBuilder.buildLanguageRegexMap;
 import static org.java.training.autumn.controller.RegexContainer.REGEX_LOGIN;
-import static org.java.training.autumn.view.TextConstants.LOGIN_DATA;
+import static org.java.training.autumn.view.TextConstants.*;
 
 public class InputNotebook {
+    public static final HashMap<String, HashMap<String,String>> languageRegexMap = buildLanguageRegexMap();
+
     private View view;
     private Scanner sc;
-
 
     private String firstName;
     private String secondName;
@@ -34,6 +35,11 @@ public class InputNotebook {
 
     public void getNote(){
         UtilityController utilityController = new UtilityController(view, sc);
+        this.firstName = utilityController.inputStringValueWithScanner(FIRST_NAME_DATA,
+                languageRegexMap.get(View.language).get(FIRST_NAME));
+
+        this.secondName = utilityController.inputStringValueWithScanner(SECOND_NAME_DATA,
+                languageRegexMap.get(View.language).get(SECOND_NAME));
 
         this.login = utilityController.inputStringValueWithScanner(LOGIN_DATA, REGEX_LOGIN);
     }

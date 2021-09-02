@@ -3,14 +3,16 @@ package org.java.training.autumn.view;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import static org.java.training.autumn.view.Languages.*;
 import static org.java.training.autumn.view.TextConstants.*;
 
 public class View {
-    public static final String language =
-            // "ua"; // Ukrainian
-            "en"; // English
-
     static String MESSAGES_BUNDLE_NAME = "messages";
+
+    public static String language=
+            ENGLISH;
+            //UKRAINIAN;
+
     public static final ResourceBundle bundle =
             ResourceBundle.getBundle(MESSAGES_BUNDLE_NAME, new Locale(language));
 
