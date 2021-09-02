@@ -11,17 +11,17 @@ public class InputNotebook {
 
     private String firstName;
     private String secondName;
-    private String patronymic;
 
-    private String nickname;
+    private String login;
     private String homePhone;
     private String cellPhone;
+
     private String email;
     private String skype;
-    private String location;
+
+    private String address;
 
     private Date createdAt;
-    private Date changedAt;
 
     public InputNotebook(View view, Scanner sc){
         this.view = view;

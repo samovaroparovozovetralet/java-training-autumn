@@ -12,4 +12,7 @@ public class View {
                     // new Locale("en"));   //English
 
     public void printMessage(String message){System.out.println(message);}
+
+    public void printStringInput(String message){}
+    public void printWrongStringInput(String message){}
 }
