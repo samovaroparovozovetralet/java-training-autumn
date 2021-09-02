@@ -17,7 +17,7 @@ public class UtilityController {
         String res;
         view.printStringInput(message);
         while(!(sc.hasNext() && (res = sc.next()).matches(regex))){
-            view.printWrongStringInput(message);
+            view.printWrongStringInput();
         }
         return res;
     }

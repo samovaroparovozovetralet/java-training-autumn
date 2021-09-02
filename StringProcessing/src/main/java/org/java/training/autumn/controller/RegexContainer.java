@@ -7,7 +7,7 @@ public interface RegexContainer {
     // Latin name
     String REGEX_FIRST_NAME_LAT = "";
     // login
-    String REGEX_LOGIN = "";
+    String REGEX_LOGIN = "[A-Za-z0-9_\\-]{8,20}";
 
     // home phone number
     String REGEX_HOME_PHONE = "";
@@ -16,6 +16,6 @@ public interface RegexContainer {
 
     // mail
     String REGEX_MAIL = "";
-    // skype
-    String REGEX_SKYPE = "";
+    // skype name https://support.skype.com/en-us/faq/FA94/What-is-a-Skype-Name
+    String REGEX_SKYPE = "[a-zA-Z][a-zA-Z0-9_\\-\\,\\.]{5,31}";
 }
