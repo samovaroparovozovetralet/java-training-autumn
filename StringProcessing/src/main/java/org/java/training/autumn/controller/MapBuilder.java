@@ -6,7 +6,7 @@ import static org.java.training.autumn.controller.RegexContainer.*;
 import static org.java.training.autumn.view.Languages.*;
 import static org.java.training.autumn.view.TextConstants.*;
 
-public class MapBuilder {
+public abstract class MapBuilder {
 
     public static HashMap<String, HashMap<String,String>> buildLanguageRegexMap(){
         HashMap<String, HashMap<String,String>> myMap = new HashMap<String, HashMap<String,String>>();

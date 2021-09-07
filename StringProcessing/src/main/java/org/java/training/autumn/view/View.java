@@ -10,8 +10,8 @@ public class View {
     static String MESSAGES_BUNDLE_NAME = "messages";
 
     public static String language=
-            ENGLISH;
-            //UKRAINIAN;
+            //ENGLISH;
+            UKRAINIAN;
 
     public static final ResourceBundle bundle =
             ResourceBundle.getBundle(MESSAGES_BUNDLE_NAME, new Locale(language));

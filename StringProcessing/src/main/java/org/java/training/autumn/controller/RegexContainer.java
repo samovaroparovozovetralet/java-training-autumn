@@ -1,14 +1,11 @@
 package org.java.training.autumn.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 public interface RegexContainer {
 
     // Cyrillic first name
-    String REGEX_FIRST_NAME_UKR = "f";
+    String REGEX_FIRST_NAME_UKR = "^[А-ЩЬЮЯҐІЇЄ][а-щьюяґіїє']{1,20}$";
     // Latin first name
-    String REGEX_FIRST_NAME_LAT = "f";
+    String REGEX_FIRST_NAME_LAT = "^[A-Z][a-z]{1,20}$";
 
     // Cyrillic second name
     String REGEX_SECOND_NAME_UKR = "s";
