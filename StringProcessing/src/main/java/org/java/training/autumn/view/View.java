@@ -7,6 +7,7 @@ import static org.java.training.autumn.view.Languages.*;
 import static org.java.training.autumn.view.TextConstants.*;
 
 public class View {
+    public static final String NOT_UNIQUE_LOGIN = "NOT UNIQUE LOGIN ";
     static String MESSAGES_BUNDLE_NAME = "messages";
 
     public static String language=

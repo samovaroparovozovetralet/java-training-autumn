@@ -7,4 +7,6 @@ public class NotUniqueLoginException extends Exception {
         super(message);
         this.login = login;
     }
+
+    public String getLogin() {return login;}
 }
