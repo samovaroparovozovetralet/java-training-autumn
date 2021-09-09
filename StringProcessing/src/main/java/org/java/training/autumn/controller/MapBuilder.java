@@ -7,7 +7,13 @@ import static org.java.training.autumn.view.Languages.*;
 import static org.java.training.autumn.view.TextConstants.*;
 
 public abstract class MapBuilder {
-
+    /**
+     * Returns a HashMap object that connects language name with regex names
+     * with actual regexes.
+     * @return  myMap   the HashMap with all local regexes for each language
+     * @see             HashMap
+     * @see             RegexContainer
+     */
     public static HashMap<String, HashMap<String,String>> buildLanguageRegexMap(){
         HashMap<String, HashMap<String,String>> myMap = new HashMap<String, HashMap<String,String>>();
 
