@@ -4,7 +4,7 @@ package org.java.training.autumn;
  *
  *
  */
-public class App
+public class PartOne
 {
 
     // syntax examples
@@ -154,5 +154,120 @@ public class App
 
     // finally
 
-    // finally block executes if
+    // finally block executes if try-catch finished properly
+    public static void finallyAfterNoException(){
+        try {
+            System.err.println("try");
+        } finally {
+            System.err.println("finally");
+        }
+    }
+
+    // finally block executes if try-catch finished with exception
+    public static void finallyAfterException(){
+        try {
+            throw new RuntimeException();
+        } finally {
+            System.err.println("finally");
+        }
+    }
+
+    // finally block executes even with return statement in try-catch
+    public static void finallyAfterReturn(){
+        try {
+            return;
+        } finally {
+            System.err.println("finally");
+        }
+    }
+
+    // finally does NOT execute if we kill JVM
+    public static void killFinallyWithSystemExit(){
+        try {
+            System.exit(42);
+        } finally {
+            System.err.println("finally");
+        }
+    }
+
+    // Runtime.getRuntime().exit(42)==System.exit(42)
+    public static void killFinallyWithRuntimeExit(){
+        try {
+            Runtime.getRuntime().exit(42);
+        } finally {
+            System.err.println("finally");
+        }
+    }
+
+    // halt also shuts down finally
+    public static void killFinallyWithHalt(){
+        try {
+            Runtime.getRuntime().halt(42);
+        } finally {
+            System.err.println("finally");
+        }
+    }
+
+    // finally does NOT manage exceptions
+    public static void moreCodeAfterFinallyException(){
+        try {
+            System.err.println("try");
+            if (true) {throw new RuntimeException();}
+        } finally {
+            System.err.println("finally");
+        }
+        System.err.println("more");
+    }
+
+    // finally can make method return new value
+    public static int getNewReturnWithFinally(){
+        try {
+            return 0;
+        } finally {
+            return 1;
+        }
+    }
+
+    // we get return even with exception
+    public static int finallyReturnWithException() {
+        try {
+            throw new RuntimeException();
+        } finally {
+            return 1;
+        }
+    }
+
+    // finally can throw new exception as mentioned
+    public static void throwNewExceptionWithFinally(){
+        try {
+            throw new Error();
+        } finally {
+            throw new RuntimeException();
+        }
+    }
+
+    // nested try-catch-finally
+
+    // catch exception with inner catch
+    public static int catchExceptionWithInnerCatch(){
+        int x =1;
+        try {
+            try {
+                x*=2;
+                if (true) {throw new RuntimeException();}
+                x*=3;
+            } catch (RuntimeException e) {
+                x*=5;
+            } finally {
+                x*=7;
+            }
+            x*=11;
+        } catch (Exception e) {
+            x*=13;
+        } finally {
+            x*=17;
+        }
+        return x; // x== 2*5*7*11*17
+    }
+
 }
