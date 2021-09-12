@@ -4,10 +4,10 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public final class Person implements Comparable<Person> {
-    private String firstName;
-    private String secondName;
-    private LocalDate birthDate;
-    private int hashCode;
+    private final String firstName;
+    private final String secondName;
+    private final LocalDate birthDate;
+    private final int hashCode;
 
     public Person(PersonDB noteBook){
         this.firstName = noteBook.getFirstName();
@@ -38,6 +38,7 @@ public final class Person implements Comparable<Person> {
         out = out * prime + birthDate.hashCode();
         return out;
     }
+
 
     public boolean equals(Object o){
         if(o==null){return false;}

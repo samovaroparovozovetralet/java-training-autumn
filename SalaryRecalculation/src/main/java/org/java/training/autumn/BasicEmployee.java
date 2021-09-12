@@ -37,4 +37,8 @@ public class BasicEmployee {
     public boolean equals(Object o){
         return person.equals(o);
     }
+
+    public int hashCode(){
+        return person.hashCode();
+    }
 }
