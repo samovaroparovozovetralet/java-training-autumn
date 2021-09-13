@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Model {
-    private ArrayList<BasicEmployee> companyEmployees;
+    private ArrayList<Employee> companyEmployees;
     private int budget;
 
     public Model(int budget){
@@ -13,7 +13,7 @@ public class Model {
         companyEmployees = new ArrayList<>();
     }
 
-    public ArrayList<BasicEmployee> getCompanyEmployees(){
+    public ArrayList<Employee> getCompanyEmployees(){
         return companyEmployees;
     }
 
@@ -28,11 +28,11 @@ public class Model {
     public void hire(Person person, int salary)
             throws EmployeeAlreadyExistsException{
         LocalDate today = LocalDate.now();
-        addEmployee(new BasicEmployee(person, today, salary));
+        addEmployee(new Employee(person, today, salary));
     }
 
     public void hire(Person person, int salary,
-                     ArrayList<BasicEmployee> managerAssignedEmployees)
+                     ArrayList<Employee> managerAssignedEmployees)
             throws EmployeeAlreadyExistsException{
         LocalDate today = LocalDate.now();
         addEmployee(new Manager(person, today, salary, managerAssignedEmployees));
@@ -44,7 +44,7 @@ public class Model {
         addEmployee(new OtherEmployee(person, today, salary, jobDescription));
     }
 
-    public void remove(BasicEmployee employee){
+    public void remove(Employee employee){
         companyEmployees.remove(employee);
     }
 
@@ -53,18 +53,23 @@ public class Model {
         companyEmployees.remove(manager);
     }
 
-    public void assignEmployee(Manager manager, BasicEmployee employee)
-            throws AlreadyAssignedEmployeeException{
+    public void assignEmployee(Manager manager, Employee employee)
+            throws AlreadyConnectedException {
         Objects.requireNonNull(manager);
-        manager.removeAssignedEmployee(employee);
+        manager.getConnectedTo(employee);
     }
 
-    public void removeEmployeeAssignment(Manager manager, BasicEmployee employee){
+    public void removeEmployeeAssignment(Manager manager, Employee employee){
         Objects.requireNonNull(manager);
-        manager.removeAssignedEmployee(employee);
+        manager.getDisconnectedFrom(employee);
     }
 
-    public void addEmployee(BasicEmployee employee)
+    public void transferToNewPosition(Employee employee, int salary){
+        remove(employee);
+    }
+
+    //utility method
+    private void addEmployee(Employee employee)
             throws EmployeeAlreadyExistsException{
         if(companyEmployees.contains(employee)){
             throw new EmployeeAlreadyExistsException();

@@ -1,14 +1,16 @@
 package org.java.training.autumn;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Objects;
 
-public class BasicEmployee {
+public class Employee implements Connectable{
     private Person person;
     private LocalDate employmentDate;
     private int salary;
+    private ArrayList<Connectable> connectedTo;
 
-    public BasicEmployee(Person person, LocalDate employmentDate, int salary){
+    public Employee(Person person, LocalDate employmentDate, int salary){
         Objects.requireNonNull(person);
         Objects.requireNonNull(employmentDate);
         this.person = person;
@@ -50,5 +52,24 @@ public class BasicEmployee {
 
     public int hashCode(){
         return person.hashCode();
+    }
+
+    public ArrayList<Connectable> getConnections(){
+        return connectedTo;
+    }
+
+    public void getConnectedTo(Connectable item)throws AlreadyConnectedException{
+        Objects.requireNonNull(item);
+        if(this.equals(item)){throw
+                new AlreadyConnectedException(
+                        "Cannot assign item to itself", this);}
+
+        if(connectedTo.contains(item)){throw new AlreadyConnectedException(
+                "Connection already exists", item, this);}
+        connectedTo.add(item);
+    }
+
+    public void getDisconnectedFrom(Connectable owner){
+        connectedTo.remove(owner);
     }
 }
