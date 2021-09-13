@@ -6,8 +6,8 @@ import java.util.Objects;
 public class OtherEmployee extends BasicEmployee{
     private final String description;
 
-    public OtherEmployee(Person person, LocalDate employmentDate, String description){
-        super(person, employmentDate);
+    public OtherEmployee(Person person, LocalDate employmentDate, int salary, String description){
+        super(person, employmentDate, salary);
         Objects.requireNonNull(description);
         this.description = description;
     }

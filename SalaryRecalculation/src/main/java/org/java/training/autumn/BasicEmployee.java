@@ -6,12 +6,14 @@ import java.util.Objects;
 public class BasicEmployee {
     private Person person;
     private LocalDate employmentDate;
+    private int salary;
 
-    public BasicEmployee(Person person, LocalDate employmentDate){
+    public BasicEmployee(Person person, LocalDate employmentDate, int salary){
         Objects.requireNonNull(person);
         Objects.requireNonNull(employmentDate);
         this.person = person;
         this.employmentDate = employmentDate;
+        this.salary = salary;
     }
 
     public Person getPerson() {
@@ -32,6 +34,14 @@ public class BasicEmployee {
 
     public LocalDate getBirthDate(){
         return person.getBirthDate();
+    }
+
+    public void setSalary(int salary){
+        this.salary = salary;
+    }
+
+    public int getSalary(){
+        return salary;
     }
 
     public boolean equals(Object o){

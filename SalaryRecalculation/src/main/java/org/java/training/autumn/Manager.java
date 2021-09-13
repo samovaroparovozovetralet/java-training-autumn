@@ -8,13 +8,13 @@ import java.util.Objects;
 public class Manager extends BasicEmployee{
     private ArrayList<BasicEmployee> assignedEmployees;
 
-    public Manager(Person person, LocalDate employmentDate){
-        super(person, employmentDate);
+    public Manager(Person person, LocalDate employmentDate, int salary){
+        super(person, employmentDate, salary);
         assignedEmployees = new ArrayList<>();
     }
 
-    public Manager(Person person, LocalDate employmentDate, ArrayList<BasicEmployee> assignedEmployees){
-        super(person, employmentDate);
+    public Manager(Person person, LocalDate employmentDate, int salary, ArrayList<BasicEmployee> assignedEmployees){
+        super(person, employmentDate, salary);
         Objects.requireNonNull(assignedEmployees);
         this.assignedEmployees = new ArrayList<>();
 
@@ -23,8 +23,8 @@ public class Manager extends BasicEmployee{
         }
     }
 
-    public Manager(Person person, LocalDate employmentDate, BasicEmployee... assignedEmployees){
-        super(person, employmentDate);
+    public Manager(Person person, LocalDate employmentDate, int salary, BasicEmployee... assignedEmployees){
+        super(person, employmentDate, salary);
         Objects.requireNonNull(assignedEmployees);
         this.assignedEmployees = new ArrayList<>();
 
