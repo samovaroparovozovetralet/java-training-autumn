@@ -1,4 +1,6 @@
-package org.java.training.autumn;
+package org.java.training.autumn.exceptions;
+
+import org.java.training.autumn.employee.Connectable;
 
 public class AlreadyConnectedException extends Exception{
     private Connectable thisOne;

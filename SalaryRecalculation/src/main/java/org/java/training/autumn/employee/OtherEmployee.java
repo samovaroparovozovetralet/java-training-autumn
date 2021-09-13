@@ -1,4 +1,6 @@
-package org.java.training.autumn;
+package org.java.training.autumn.employee;
+
+import org.java.training.autumn.person.Person;
 
 import java.time.LocalDate;
 import java.util.Objects;

@@ -1,14 +1,21 @@
 package org.java.training.autumn;
 
+import org.java.training.autumn.employee.*;
+import org.java.training.autumn.exceptions.AlreadyConnectedException;
+import org.java.training.autumn.exceptions.EmployeeAlreadyExistsException;
+import org.java.training.autumn.person.Person;
+import org.java.training.autumn.salary.calculator.SalaryCalculator;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Department {
+public class Department implements CanBePaid {
     private int departmentId;
     private int budget;
     private ArrayList<Department> subordinateDepartments = new ArrayList<>();
     private ArrayList<Employee> departmentEmployees = new ArrayList<>();
+    private SalaryCalculator calculator;
 
     public Department(int departmentId, int budget){
         this.departmentId = departmentId;
@@ -24,16 +31,16 @@ public class Department {
         return departmentEmployees;
     }
 
-    public int getBudget(){
+    public int getSalary(){
         return budget;
     }
 
-    public void setBudget(int budget){
+    public void setSalary(int budget){
         this.budget = budget;
     }
 
     public void hire(Person person, int salary)
-            throws EmployeeAlreadyExistsException{
+            throws EmployeeAlreadyExistsException {
         LocalDate today = LocalDate.now();
         addEmployee(new Employee(person, today, salary));
     }

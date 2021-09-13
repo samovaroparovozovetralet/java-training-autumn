@@ -1,10 +1,13 @@
-package org.java.training.autumn;
+package org.java.training.autumn.employee;
+
+import org.java.training.autumn.exceptions.AlreadyConnectedException;
+import org.java.training.autumn.person.Person;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Employee implements Connectable{
+public class Employee implements Connectable, CanBePaid {
     private Person person;
     private LocalDate employmentDate;
     private int salary;
@@ -58,7 +61,7 @@ public class Employee implements Connectable{
         return connectedTo;
     }
 
-    public void getConnectedTo(Connectable item)throws AlreadyConnectedException{
+    public void getConnectedTo(Connectable item)throws AlreadyConnectedException {
         Objects.requireNonNull(item);
         if(this.equals(item)){throw
                 new AlreadyConnectedException(

@@ -1,4 +1,6 @@
-package org.java.training.autumn;
+package org.java.training.autumn.employee;
+
+import org.java.training.autumn.exceptions.AlreadyConnectedException;
 
 import java.util.ArrayList;
 
