@@ -4,6 +4,7 @@ import org.java.training.autumn.employee.*;
 import org.java.training.autumn.exceptions.AlreadyConnectedException;
 import org.java.training.autumn.exceptions.EmployeeAlreadyExistsException;
 import org.java.training.autumn.person.Person;
+import org.java.training.autumn.salary.calculator.DefaultCalculator;
 import org.java.training.autumn.salary.calculator.SalaryCalculator;
 
 import java.time.LocalDate;
@@ -20,11 +21,16 @@ public class Department implements CanBePaid {
     public Department(int departmentId, int budget){
         this.departmentId = departmentId;
         this.budget = budget;
+        this.calculator = new DefaultCalculator();
     }
 
     public void addSubordinateDepartment(Department subordinate){
         Objects.requireNonNull(subordinate);
         subordinateDepartments.add(subordinate);
+    }
+
+    public void setSalaryCalculator(SalaryCalculator calculator){
+        Objects.requireNonNull(calculator);
     }
 
     public ArrayList<Employee> getDepartmentEmployees(){
