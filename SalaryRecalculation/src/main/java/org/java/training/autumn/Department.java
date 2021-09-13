@@ -4,17 +4,24 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Model {
-    private ArrayList<Employee> companyEmployees;
+public class Department {
+    private int departmentId;
     private int budget;
+    private ArrayList<Department> subordinateDepartments = new ArrayList<>();
+    private ArrayList<Employee> departmentEmployees = new ArrayList<>();
 
-    public Model(int budget){
+    public Department(int departmentId, int budget){
+        this.departmentId = departmentId;
         this.budget = budget;
-        companyEmployees = new ArrayList<>();
     }
 
-    public ArrayList<Employee> getCompanyEmployees(){
-        return companyEmployees;
+    public void addSubordinateDepartment(Department subordinate){
+        Objects.requireNonNull(subordinate);
+        subordinateDepartments.add(subordinate);
+    }
+
+    public ArrayList<Employee> getDepartmentEmployees(){
+        return departmentEmployees;
     }
 
     public int getBudget(){
@@ -48,7 +55,7 @@ public class Model {
         for(Connectable connection : employee.getConnections()){
             connection.getDisconnectedFrom(employee);
         }
-        companyEmployees.remove(employee);
+        departmentEmployees.remove(employee);
     }
 
     public void remove(Manager manager){
@@ -56,7 +63,7 @@ public class Model {
         for(Connectable connection : manager.getConnections()){
             connection.getDisconnectedFrom(manager);
         }
-        companyEmployees.remove(manager);
+        departmentEmployees.remove(manager);
     }
 
     public void assignEmployee(Manager manager, Employee employee)
@@ -116,10 +123,10 @@ public class Model {
     //utility method
     private void addEmployee(Employee employee)
             throws EmployeeAlreadyExistsException{
-        if(companyEmployees.contains(employee)){
+        if(departmentEmployees.contains(employee)){
             throw new EmployeeAlreadyExistsException();
         }
-        companyEmployees.add(employee);
+        departmentEmployees.add(employee);
     }
 
 }
