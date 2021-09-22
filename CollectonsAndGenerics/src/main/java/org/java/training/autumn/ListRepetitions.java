@@ -23,7 +23,8 @@ public class ListRepetitions {
 
     public static <T> Map<T,Long> repetitionsMapWithCollectors(List<T> source){
         Objects.requireNonNull(source);
-        return source.stream().collect(Collectors.groupingBy(k -> k, Collectors.counting()));
+        return source.stream().collect(Collectors.groupingBy(k -> k,
+                Collectors.counting()));
     }
 
     public static <T> Map<T,Long> repetitionsMapWithCompute(List<T> source){
