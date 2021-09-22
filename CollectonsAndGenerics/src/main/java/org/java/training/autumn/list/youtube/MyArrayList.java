@@ -1,4 +1,4 @@
-package org.java.training.autumn;
+package org.java.training.autumn.list.youtube;
 
 import java.util.Iterator;
 

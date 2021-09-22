@@ -1,4 +1,4 @@
-package org.java.training.autumn;
+package org.java.training.autumn.list.youtube;
 
 public interface MyArrayListInterface<E> extends Iterable<E>{
     E get(int index);
