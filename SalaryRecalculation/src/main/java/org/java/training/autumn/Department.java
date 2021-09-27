@@ -8,10 +8,9 @@ import org.java.training.autumn.salary.calculator.DefaultCalculator;
 import org.java.training.autumn.salary.calculator.SalaryCalculator;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Objects;
+import java.util.*;
 
-public class Department implements CanBePaid {
+public class Department implements IPayee {
     private int departmentId;
     private int budget;
     private ArrayList<Department> subordinateDepartments = new ArrayList<>();
@@ -66,7 +65,7 @@ public class Department implements CanBePaid {
 
     public void remove(Employee employee){
         for(Connectable connection : employee.getConnections()){
-            connection.getDisconnectedFrom(employee);
+            connection.disconnectFrom(employee);
         }
         departmentEmployees.remove(employee);
     }
@@ -74,7 +73,7 @@ public class Department implements CanBePaid {
     public void remove(Manager manager){
         // TODO: whom to reassign related employees
         for(Connectable connection : manager.getConnections()){
-            connection.getDisconnectedFrom(manager);
+            connection.disconnectFrom(manager);
         }
         departmentEmployees.remove(manager);
     }
@@ -82,14 +81,14 @@ public class Department implements CanBePaid {
     public void assignEmployee(Manager manager, Employee employee)
             throws AlreadyConnectedException {
         Objects.requireNonNull(manager);
-        manager.getConnectedTo(employee);
-        employee.getConnectedTo(manager);
+        manager.connectTo(employee);
+        employee.connectTo(manager);
     }
 
     public void removeEmployeeAssignment(Manager manager, Employee employee){
         Objects.requireNonNull(manager);
-        manager.getDisconnectedFrom(employee);
-        employee.getDisconnectedFrom(manager);
+        manager.disconnectFrom(employee);
+        employee.disconnectFrom(manager);
     }
 
     public void transferToNewPosition(Employee employee, int salary){
@@ -133,7 +132,25 @@ public class Department implements CanBePaid {
         }
     }
 
-    //utility method
+    public void sortEmployeesBySecondName(){
+        Comparator<Employee> comparator = new Comparator<Employee>(){
+            public int compare(Employee first, Employee second){
+                return first.getPerson().compareTo(second.getPerson());
+            }
+        };
+        departmentEmployees.sort(comparator);
+    }
+
+    public void sortEmployeesByEmploymentData(){
+        Comparator<Employee> comparator = new Comparator<Employee>(){
+            public int compare(Employee first, Employee second){
+               return first.getEmploymentDate().compareTo(second.getEmploymentDate());
+            }
+        };
+        departmentEmployees.sort(comparator);
+    }
+
+    //utility methods
     private void addEmployee(Employee employee)
             throws EmployeeAlreadyExistsException{
         if(departmentEmployees.contains(employee)){

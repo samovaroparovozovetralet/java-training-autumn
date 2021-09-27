@@ -22,7 +22,7 @@ public class Manager extends Employee{
 
         for(Employee employee : assignedEmployees){
             try {
-                getConnectedTo(employee);
+                connectTo(employee);
             }
             catch(AlreadyConnectedException e){
                 e.printStackTrace();
@@ -37,7 +37,7 @@ public class Manager extends Employee{
 
         for(Employee employee : assignedEmployees){
             try {
-                getConnectedTo(employee);
+                connectTo(employee);
             }
             catch(AlreadyConnectedException e){
                 e.printStackTrace();

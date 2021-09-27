@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public interface Connectable {
     public ArrayList<Connectable> getConnections();
-    public void getConnectedTo(Connectable item) throws AlreadyConnectedException;
-    public void getDisconnectedFrom(Connectable item);
+    public void connectTo(Connectable item) throws AlreadyConnectedException;
+    public void disconnectFrom(Connectable item);
 
 }
